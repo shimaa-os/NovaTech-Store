@@ -38,6 +38,20 @@ dev = [
   "ruff>=0.12,<1",
 ]
 
+[project.optional-dependencies]
+dev = [
+  "aiosqlite>=0.21,<1",
+  "bandit>=1.8,<2",
+  "fakeredis>=2.30,<3",
+  "httpx>=0.28,<1",
+  "mypy>=1.17,<3",
+  "pip-audit>=2.9,<3",
+  "pytest>=8.4,<10",
+  "pytest-asyncio>=1.1,<2",
+  "pytest-cov>=6.2,<8",
+  "ruff>=0.12,<1",
+]
+
 [project.scripts]
 novatech = "app.cli:main"
 novatech-import-products = "app.import_products:main"
