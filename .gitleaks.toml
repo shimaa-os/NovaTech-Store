@@ -1,0 +1,10 @@
+title = "NovaTech Store Gitleaks"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "novatech-legacy-test-accounts"
+description = "Legacy NovaTech test account material"
+regex = '''(?i)(TEST_ACCOUNTS|admin_password|gmail_app_password|nova_token|store_token)'''
+keywords = ["TEST_ACCOUNTS", "admin_password", "gmail_app_password", "nova_token", "store_token"]

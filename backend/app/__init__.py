@@ -1,0 +1,2 @@
+"""NovaTech Store application package."""
+
