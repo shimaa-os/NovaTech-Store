@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "novatech-store"
+version = "7.0.0"
+description = "Production-hardened NovaTech Store"
+requires-python = ">=3.13"
+dependencies = [
+  "alembic>=1.16,<2",
+  "argon2-cffi>=25.1,<26",
+  "boto3>=1.40,<2",
+  "cryptography>=50,<51",
+  "email-validator>=2.2,<3",
+  "fastapi>=0.116,<1",
+  "psycopg[binary]>=3.2,<4",
+  "pydantic-settings>=2.10,<3",
+  "pyotp>=2.9,<3",
+  "redis[hiredis]>=6.2,<7",
+  "rq>=2.4,<3",
+  "sqlalchemy[asyncio]>=2.0.41,<3",
+  "uuid6>=2025.0.1",
+  "uvicorn[standard]>=0.35,<1",
+]
+
+[dependency-groups]
+dev = [
+  "aiosqlite>=0.21,<1",
+  "bandit>=1.8,<2",
+  "fakeredis>=2.30,<3",
+  "httpx>=0.28,<1",
+  "mypy>=1.17,<2",
+  "pip-audit>=2.9,<3",
+  "pytest>=8.4,<9",
+  "pytest-asyncio>=1.1,<2",
+  "pytest-cov>=6.2,<7",
+  "ruff>=0.12,<1",
+]
+
+[project.scripts]
+novatech = "app.cli:main"
+novatech-import-products = "app.import_products:main"
+
+[tool.setuptools]
+package-dir = {"" = "backend"}
+
+[tool.setuptools.packages.find]
+where = ["backend"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+  "postgres: requires PostgreSQL and Redis integration services",
+]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["B008", "E501", "S101", "S105", "S107"]
+
+[tool.mypy]
+python_version = "3.13"
+plugins = ["pydantic.mypy"]
+warn_unused_ignores = true
+check_untyped_defs = true
+ignore_missing_imports = true
